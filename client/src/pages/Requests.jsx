@@ -15,7 +15,7 @@ function Requests() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch("http://localhost:5000/request", {
+    fetch("https://smart-blood-donation-system-using-ai.onrender.com/request", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(form)

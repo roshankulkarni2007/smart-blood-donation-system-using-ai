@@ -4,7 +4,7 @@ function Recommendation({ bloodNeeded = "A+", urgency = "High", userLocation = "
   const [recommendedDonor, setRecommendedDonor] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:5000/donors")
+    fetch("https://smart-blood-donation-system-using-ai.onrender.com/donors")
       .then((res) => res.json())
       .then((donors) => {
         // 1. Filter only available donors

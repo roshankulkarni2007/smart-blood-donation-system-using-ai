@@ -4,7 +4,7 @@ function Donors() {
   const [donors, setDonors] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/donors")
+    fetch("https://smart-blood-donation-system-using-ai.onrender.com/donors")
       .then((res) => res.json())
       .then((data) => setDonors(data))
       .catch((err) => console.log(err));

@@ -20,7 +20,7 @@ function Register() {
     };
 
     try {
-      const response = await fetch("http://localhost:5000/donors", {
+      const response = await fetch("https://smart-blood-donation-system-using-ai.onrender.com/donors", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
