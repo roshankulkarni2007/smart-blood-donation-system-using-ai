@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link, NavLink, Route, Routes } from "react-router-dom";
+import { API_URL } from "./config";
 
-const API_URL = (import.meta.env.VITE_API_URL || "http://localhost:5050/api").replace(/\/$/, "");
 const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID || "";
 const bloodGroups = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
 const availabilityStates = ["Available", "Busy", "Temporarily unavailable"];

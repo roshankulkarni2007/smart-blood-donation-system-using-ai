@@ -14,8 +14,8 @@ This project is ready to deploy as two public services:
    - `smart-blood-donation-api`
    - `smart-blood-donation-system`
 5. After deploy, open:
-   - Website: `https://smart-blood-donation-system.onrender.com`
-   - API health: `https://smart-blood-donation-api.onrender.com/api/health`
+   - Website: `https://smart-blood-donation-system-using-7ry8ykwew-roshan-s-projects8.vercel.app`
+   - API health: `https://smart-blood-donation-system-using-ai.onrender.com/api/health`
 
 ## Manual Deployment Values
 
@@ -29,7 +29,7 @@ API service:
   - `JWT_SECRET=<any-long-random-secret>`
   - `ADMIN_EMAIL=roshankulkarni122@gmail.com`
   - `ADMIN_PASSWORD=<your-admin-password>`
-  - `CLIENT_URL=https://your-frontend-domain`
+  - `CLIENT_URL=https://smart-blood-donation-system-using-7ry8ykwew-roshan-s-projects8.vercel.app`
   - `MONGO_URI=<your-mongodb-atlas-connection-string>`
   - `SMTP_HOST=smtp.gmail.com`
   - `SMTP_PORT=587`
@@ -44,7 +44,7 @@ Frontend static site:
 - Build command: `npm install && npm run build`
 - Publish directory: `dist`
 - Environment variables:
-  - `VITE_API_URL=https://your-api-domain/api`
+  - `VITE_API_URL=https://smart-blood-donation-system-using-ai.onrender.com/api`
   - `VITE_GOOGLE_CLIENT_ID=<your-google-oauth-client-id>`
 
 ## Notes

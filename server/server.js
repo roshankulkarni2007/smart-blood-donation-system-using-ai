@@ -7,7 +7,11 @@ const { MongoClient } = require("mongodb");
 
 const app = express();
 const PORT = process.env.PORT || 5050;
-const CLIENT_URLS = (process.env.CLIENT_URL || "http://localhost:5173")
+const DEFAULT_CLIENT_URLS = [
+  "https://smart-blood-donation-system-using-7ry8ykwew-roshan-s-projects8.vercel.app",
+  "http://localhost:5173"
+];
+const CLIENT_URLS = (process.env.CLIENT_URL || DEFAULT_CLIENT_URLS.join(","))
   .split(",")
   .map((url) => url.trim())
   .filter(Boolean);

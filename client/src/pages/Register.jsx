@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { API_URL } from "../config";
 
 function Register() {
   const [name, setName] = useState("");
@@ -20,7 +21,7 @@ function Register() {
     };
 
     try {
-      const response = await fetch("https://smart-blood-donation-system-using-ai.onrender.com/donors", {
+      const response = await fetch(`${API_URL}/donors`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

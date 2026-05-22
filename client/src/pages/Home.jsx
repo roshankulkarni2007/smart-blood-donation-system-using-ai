@@ -1,5 +1,6 @@
 // src/pages/Home.jsx
 import { useEffect, useState } from "react";
+import { API_URL } from "../config";
 
 function Home() {
   const [donors, setDonors] = useState([]);
@@ -8,7 +9,7 @@ function Home() {
   const [recommendedDonors, setRecommendedDonors] = useState([]);
 
   useEffect(() => {
-    fetch("https://smart-blood-donation-system-using-ai.onrender.com/donors")
+    fetch(`${API_URL}/donors`)
       .then((res) => res.json())
       .then((data) => {
         setDonors(data);
@@ -20,18 +21,18 @@ function Home() {
   const handleRecommendation = () => {
     const filtered = donors.filter((donor) => {
       const bloodMatch =
-        donor.blood.toLowerCase() === bloodGroup.toLowerCase();
+        donor.bloodGroup.toLowerCase() === bloodGroup.toLowerCase();
 
       const locationMatch =
-        donor.location.toLowerCase() === location.toLowerCase();
+        donor.city.toLowerCase() === location.toLowerCase();
 
-      const availableMatch = donor.status === "Available";
+      const availableMatch = donor.availabilityStatus === "Available";
 
       return bloodMatch && locationMatch && availableMatch;
     });
 
     const sorted = filtered.sort((a, b) => {
-      return new Date(b.lastDonation) - new Date(a.lastDonation);
+      return new Date(b.lastDonationDate) - new Date(a.lastDonationDate);
     });
 
     setRecommendedDonors(sorted);
@@ -150,10 +151,10 @@ function Home() {
             >
               <h3 style={{ color: "#b91c1c" }}>{donor.name}</h3>
               <p><strong>Age:</strong> {donor.age}</p>
-              <p><strong>Blood Group:</strong> {donor.blood}</p>
-              <p><strong>Location:</strong> {donor.location}</p>
-              <p><strong>Status:</strong> {donor.status}</p>
-              <p><strong>Last Donation:</strong> {donor.lastDonation}</p>
+              <p><strong>Blood Group:</strong> {donor.bloodGroup}</p>
+              <p><strong>Location:</strong> {donor.city}</p>
+              <p><strong>Status:</strong> {donor.availabilityStatus}</p>
+              <p><strong>Last Donation:</strong> {donor.lastDonationDate}</p>
             </div>
           ))
         ) : (

@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
+import { API_URL } from "../config";
 
 function Recommendation({ bloodNeeded = "A+", urgency = "High", userLocation = "Bangalore" }) {
   const [recommendedDonor, setRecommendedDonor] = useState(null);
 
   useEffect(() => {
-    fetch("https://smart-blood-donation-system-using-ai.onrender.com/donors")
+    fetch(`${API_URL}/donors`)
       .then((res) => res.json())
       .then((donors) => {
         // 1. Filter only available donors
-        let filtered = donors.filter((d) => d.status === "Available" && d.blood === bloodNeeded);
+        let filtered = donors.filter((d) => d.availabilityStatus === "Available" && d.bloodGroup === bloodNeeded);
 
         // 2. Sort by simple AI logic:
         // - Exact location match first
@@ -17,8 +18,8 @@ function Recommendation({ bloodNeeded = "A+", urgency = "High", userLocation = "
 
         filtered.sort((a, b) => {
           // location match
-          const locA = a.location === userLocation ? 0 : 1;
-          const locB = b.location === userLocation ? 0 : 1;
+          const locA = a.city === userLocation ? 0 : 1;
+          const locB = b.city === userLocation ? 0 : 1;
 
           if (locA !== locB) return locA - locB;
 
@@ -29,8 +30,8 @@ function Recommendation({ bloodNeeded = "A+", urgency = "High", userLocation = "
           if (urgencyA !== urgencyB) return urgencyA - urgencyB;
 
           // last donation date (assume earlier date is better)
-          const dateA = a.lastDonation ? new Date(a.lastDonation) : new Date(0);
-          const dateB = b.lastDonation ? new Date(b.lastDonation) : new Date(0);
+          const dateA = a.lastDonationDate ? new Date(a.lastDonationDate) : new Date(0);
+          const dateB = b.lastDonationDate ? new Date(b.lastDonationDate) : new Date(0);
           return dateA - dateB;
         });
 
@@ -51,10 +52,10 @@ function Recommendation({ bloodNeeded = "A+", urgency = "High", userLocation = "
     <div style={{ padding: "20px", background: "#d1fae5", borderRadius: "12px", textAlign: "center", marginTop: "20px" }}>
       <h3 style={{ color: "#047857" }}>Recommended Donor (AI)</h3>
       <p>Name: {recommendedDonor.name}</p>
-      <p>Blood Group: {recommendedDonor.blood}</p>
-      <p>Status: {recommendedDonor.status}</p>
-      <p>Location: {recommendedDonor.location}</p>
-      {recommendedDonor.lastDonation && <p>Last Donation: {recommendedDonor.lastDonation}</p>}
+      <p>Blood Group: {recommendedDonor.bloodGroup}</p>
+      <p>Status: {recommendedDonor.availabilityStatus}</p>
+      <p>Location: {recommendedDonor.city}</p>
+      {recommendedDonor.lastDonationDate && <p>Last Donation: {recommendedDonor.lastDonationDate}</p>}
       <button
         style={{ background: "#047857", color: "white", padding: "10px 20px", border: "none", borderRadius: "8px" }}
       >

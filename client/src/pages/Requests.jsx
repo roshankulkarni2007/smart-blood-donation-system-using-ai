@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { API_URL } from "../config";
 
 function Requests() {
   const [form, setForm] = useState({
@@ -15,7 +16,7 @@ function Requests() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch("https://smart-blood-donation-system-using-ai.onrender.com/request", {
+    fetch(`${API_URL}/requests`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(form)

@@ -16,7 +16,7 @@ services:
       - key: ADMIN_PASSWORD
         value: Roshan@2007
       - key: CLIENT_URL
-        value: https://smart-blood-donation-system.onrender.com,http://localhost:5173
+        value: https://smart-blood-donation-system-using-7ry8ykwew-roshan-s-projects8.vercel.app,https://smart-blood-donation-system.onrender.com,http://localhost:5173
       - key: DB_NAME
         value: smart-blood-donation
       - key: MONGO_URI
@@ -42,7 +42,7 @@ services:
     staticPublishPath: dist
     envVars:
       - key: VITE_API_URL
-        value: https://smart-blood-donation-api.onrender.com/api
+        value: https://smart-blood-donation-system-using-ai.onrender.com/api
       - key: VITE_GOOGLE_CLIENT_ID
         sync: false
     routes:

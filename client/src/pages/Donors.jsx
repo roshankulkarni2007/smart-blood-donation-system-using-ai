@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
+import { API_URL } from "../config";
 
 function Donors() {
   const [donors, setDonors] = useState([]);
 
   useEffect(() => {
-    fetch("https://smart-blood-donation-system-using-ai.onrender.com/donors")
+    fetch(`${API_URL}/donors`)
       .then((res) => res.json())
       .then((data) => setDonors(data))
       .catch((err) => console.log(err));
@@ -36,10 +37,10 @@ function Donors() {
           >
             <h2 style={{ color: "#991b1b" }}>{donor.name}</h2>
             <p>Age: {donor.age}</p>
-            <p>Blood Group: {donor.blood}</p>
-            <p>Location: {donor.location}</p>
-            <p>Status: {donor.status}</p>
-            <p>Last Donation: {donor.lastDonation}</p>
+            <p>Blood Group: {donor.bloodGroup}</p>
+            <p>Location: {donor.city}</p>
+            <p>Status: {donor.availabilityStatus}</p>
+            <p>Last Donation: {donor.lastDonationDate}</p>
           </div>
         ))}
       </div>
