@@ -1,0 +1,50 @@
+import { useEffect, useState } from "react";
+
+function Donors() {
+  const [donors, setDonors] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/donors")
+      .then((res) => res.json())
+      .then((data) => setDonors(data))
+      .catch((err) => console.log(err));
+  }, []);
+
+  return (
+    <div style={{ padding: "30px" }}>
+      <h1 style={{ textAlign: "center", color: "#b91c1c" }}>
+        Available Donors
+      </h1>
+
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+          gap: "20px",
+          marginTop: "30px"
+        }}
+      >
+        {donors.map((donor) => (
+          <div
+            key={donor.id}
+            style={{
+              background: "#fef2f2",
+              padding: "20px",
+              borderRadius: "12px",
+              boxShadow: "0 4px 10px rgba(0,0,0,0.1)"
+            }}
+          >
+            <h2 style={{ color: "#991b1b" }}>{donor.name}</h2>
+            <p>Age: {donor.age}</p>
+            <p>Blood Group: {donor.blood}</p>
+            <p>Location: {donor.location}</p>
+            <p>Status: {donor.status}</p>
+            <p>Last Donation: {donor.lastDonation}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default Donors;
